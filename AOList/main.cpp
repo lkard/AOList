@@ -8,9 +8,10 @@ int main()
 
 
 		AAList<int> lst;
-		lst.push_front(5);
+		
 		lst.push_back(10);
 		lst.push_back(11);
+		lst.push_front(5);
 		lst.push_back(22);
 
 		cout << "count of element = " << lst.getSize() << endl;

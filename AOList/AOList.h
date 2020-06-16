@@ -4,6 +4,12 @@ template <typename T>
 class AAList
 {
 public:
+
+private:
+	int size = 0;
+	AANode<T>* head = nullptr;
+
+public:
 	AAList()
 	{
 		this->size = 0;
@@ -106,6 +112,5 @@ private:
 		}
 		return pref;
 	}
-	int size = 0;
-	AANode<T>* head = nullptr;
+	
 };
