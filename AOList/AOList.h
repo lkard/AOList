@@ -1,37 +1,34 @@
 #pragma once
-
 template <typename T>
-class AAList
+class AOList
 {
-public:
-
-private:
-	int size = 0;
-	AANode<T>* head = nullptr;
 
 public:
-	AAList()
+	AOList()
 	{
 		this->size = 0;
 		this->head = nullptr;
 	}
+	int getSize() {
+		return this->size;
+	}
 	void push_back(T data) {
 		if (head == nullptr) {
-			head = new AANode<T>(data);
+			head = new AONode<T>(data);
 		}
 		else {
-			AANode<T>* current = this->head;
+			AONode<T>* current = this->head;
 			while (current->pNext != nullptr) {
 				current = current->pNext;
 			}
-			current->pNext = new AANode<T>(data);
+			current->pNext = new AONode<T>(data);
 		}
 		this->size += 1;
 
 	}
 	void push_front(T data) {
 
-		this->head = new AANode<T>(data, head);
+		this->head = new AONode<T>(data, head);
 		size++;
 	}
 	void insert(T data, int index) {
@@ -40,11 +37,11 @@ public:
 			push_front(data);
 		}
 		else if (index < size) {
-			AANode<T>* pref = this->head;
+			AONode<T>* pref = this->head;
 			for (int i = 0; i < index - 1; i++) {
 				pref = pref->pNext;
 			}
-			AANode<T>* n = new AANode<T>(data, pref->pNext);
+			AONode<T>* n = new AONode<T>(data, pref->pNext);
 			pref->pNext = n;
 			size++;
 		}
@@ -52,13 +49,10 @@ public:
 			push_back(data);
 		}
 	}
-	int getSize() {
-		return this->size;
-	}
 	T& operator[](const int index) {
 		//Необходима проверка
 		if (index < size) {
-			AANode<T>* current = this->head;
+			AONode<T>* current = this->head;
 			for (int i = 0; i < index; i++) {
 				current = current->pNext;
 			}
@@ -66,7 +60,7 @@ public:
 		}
 	}
 	void pop_front() {
-		AANode<T>* temp = this->head;
+		AONode<T>* temp = this->head;
 		head = head->pNext;
 		delete temp;
 		size--;
@@ -74,8 +68,8 @@ public:
 	void removeAt(int index) {
 		//Необходима проверка 
 		if (index < size) {
-			AANode<T>* pref = getPrefByIndex(index);
-			AANode<T>* toDestroid = pref->pNext;
+			AONode<T>* pref = getPrefByIndex(index);
+			AONode<T>* toDestroid = pref->pNext;
 			pref->pNext = toDestroid->pNext;
 			delete toDestroid;
 			size--;
@@ -87,24 +81,24 @@ public:
 			pop_front();
 		}
 	}
-	~AAList()
+	~AOList()
 	{
 		clear();
 	}
 private:
 	template <typename T>
-	class AANode {
+	class AONode {
 	public:
-		AANode* pNext;
+		AONode* pNext;
 		T data;
-		AANode(T data = T(), AANode* pNext = nullptr) {
+		AONode(T data = T(), AONode* pNext = nullptr) {
 			this->pNext = pNext;
 			this->data = data;
 		}
 
 	};
-	AANode<T>* getPrefByIndex(int index) {
-		AANode<T>* pref = this->head;
+	AONode<T>* getPrefByIndex(int index) {
+		AONode<T>* pref = this->head;
 
 		for (int i = 0; i < index - 1; i++) {
 			pref = pref->pNext;
@@ -112,5 +106,6 @@ private:
 		}
 		return pref;
 	}
-	
+	int size = 0;
+	AONode<T>* head = nullptr;
 };

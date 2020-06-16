@@ -7,7 +7,7 @@ int main()
 	if (true) {
 
 
-		AAList<int> lst;
+		AOList<int> lst;
 		
 		lst.push_back(10);
 		lst.push_back(11);
